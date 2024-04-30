@@ -1,0 +1,43 @@
+<h2 rds-dialog-header>{{ 'pcv-prediction.select-batch-button' | translate }}<rds-icon icon="close" (click)="close()"/></h2>
+<div rds-dialog-content>
+  <p>{{ 'pcv-prediction.select-batch-description' | translate }}</p>
+  <rds-global-search
+      [includeButton]="false"
+      [autoSearch]="true"
+      [placeholder]="'pcv-prediction.search-batches-placeholder' | translate"
+      [(ngModel)]="dataSource.filter"></rds-global-search>
+  <table rds-table [dataSource]="dataSource" rdsSort #sort>
+    <ng-container rdsColumnDef="select">
+      <th rds-header-cell *rdsHeaderCellDef></th>
+      <td rds-cell *rdsCellDef="let element">
+        <rds-checkbox
+          (click)="$event.stopPropagation()"
+          [aria-label]="checkboxLabel(element)"
+          [checked]="isSelected(element)"
+          (change)="$event ? toggleSelection(element) : null"
+        ></rds-checkbox>
+      </td>
+    </ng-container>
+    <ng-container rdsColumnDef="batch_id">
+      <th rds-header-cell *rdsHeaderCellDef rds-sort-header>{{ 'pcv-prediction.batch_id' | translate }}</th>
+      <td rds-cell *rdsCellDef="let element">{{ element.batch_id }}</td>
+    </ng-container>
+    <ng-container rdsColumnDef="predicted_pcv_10h">
+      <th rds-header-cell *rdsHeaderCellDef rds-sort-header>{{ 'pcv-prediction.predicted_pcv_10h' | translate }}</th>
+      <td rds-cell *rdsCellDef="let element">{{ element.predicted_pcv_10h }}</td>
+    </ng-container>
+    <ng-container rdsColumnDef="predicted_pcv_60h">
+      <th rds-header-cell *rdsHeaderCellDef rds-sort-header>{{ 'pcv-prediction.predicted_pcv_60h' | translate }}</th>
+      <td rds-cell *rdsCellDef="let element">{{ element.predicted_pcv_60h }}</td>
+    </ng-container>
+    <ng-container rdsColumnDef="measured_pcv">
+      <th rds-header-cell *rdsHeaderCellDef rds-sort-header>{{ 'pcv-prediction.measured_pcv' | translate }}</th>
+      <td rds-cell *rdsCellDef="let element">{{ element.measured_pcv }}</td>
+    </ng-container>
+    <tr rds-header-row *rdsHeaderRowDef="displayedColumns"></tr>
+    <tr rds-row *rdsRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+<div rds-dialog-actions-container>
+  <button rds-primary-button size="m" (click)="submit()">{{ 'pcv-prediction.select-batch-submit' | translate }}</button>
+</div>

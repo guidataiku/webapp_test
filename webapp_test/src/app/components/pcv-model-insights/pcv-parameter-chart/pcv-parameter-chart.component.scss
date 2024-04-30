@@ -1,0 +1,24 @@
+:host {
+    &:has(.rds-progress-bar) {
+        .parameter-chart {
+            position: relative;
+            &::before {
+                content: '';
+                display: block;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background: white;
+                z-index: +10;
+            }
+        }
+    }
+    padding: 0 24px;
+    background-color: white;
+    > .rds-progress-bar {
+        margin: 0 -24px 0;
+        width: calc(100% + 48px);
+    }
+}

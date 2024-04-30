@@ -1,0 +1,39 @@
+:host {
+    .selection-section {
+        padding: 10px 0;
+        .rds-button {
+            margin-left: 10px;
+        }
+    }
+    .chip-list {
+        padding: 10px 0;
+        display: flex;
+        gap: 12px;
+        > .rds-chips {
+            flex-grow: 1;
+            align-self: baseline;
+        } 
+        > a {
+            flex:0 1 auto;
+            align-self: baseline;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            text-transform: none;
+            letter-spacing: .2px;
+            font-family: roche-sans;
+            color: var(--rds-color-informative);
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .card-wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        padding: 24px 0;
+    }
+}

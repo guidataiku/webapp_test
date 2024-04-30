@@ -1,0 +1,13 @@
+[
+    {
+        "icon": "checked",
+        "translationKey": "avastin",
+        "children": [{
+                "translationKey": "pcv-model-insight"
+            }, {
+                "translationKey": "titer-model-insight"
+            }, {
+                "translationKey": "parameter-dashboard"
+        }]
+    }
+]

@@ -1,0 +1,6 @@
+:host {
+    > .rds-progress-bar {
+        margin: -20px -24px 0;
+        width: calc(100% + 48px);
+    }
+}

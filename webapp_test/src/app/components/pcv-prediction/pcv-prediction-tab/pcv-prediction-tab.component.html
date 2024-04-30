@@ -1,0 +1,21 @@
+<div class="selection-section">
+    <rds-control-label>{{ 'pcv-prediction.select-batch-label' | translate }}</rds-control-label>
+    <button rds-primary-button [disabled]="batchesLoading" (click)="openBatchesModal()">
+        <rds-icon icon="factor_parallelism" namespace="filled"></rds-icon>
+        {{ 'pcv-prediction.select-batch-button' | translate }}
+    </button>
+</div>
+<rds-divider></rds-divider>
+@if (!!selection.batchId) {
+    <div class="chip-list">
+        <rds-chip-list>
+            <rds-chip>{{ selection.batchId }}</rds-chip>
+        </rds-chip-list>
+    </div>
+    <rds-divider></rds-divider>
+}
+<!--rds-radio-group class="d-flex flex-row" (buttonChanged)="updateModel($event)">
+    <rds-radio-button value="initial-model" [checked]="model === 'initial-model'">initial-model</rds-radio-button>
+    <rds-radio-button value="later-model" [checked]="model === 'later-model'">later-model</rds-radio-button>
+    <rds-radio-button value="both-models" [checked]="model === 'both-models'">both-models</rds-radio-button>
+</rds-radio-group>-->

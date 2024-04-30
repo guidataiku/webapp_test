@@ -1,0 +1,26 @@
+<h2 rds-dialog-header>{{ 'date-range' | translate }}</h2>
+<div rds-dialog-content>
+    <rds-global-search
+        [includeButton]="false"
+        [autoSearch]="true"
+        [(ngModel)]="searchPattern"></rds-global-search>
+    <p>selection-tree-table works!</p>
+    <!--rds-tree [dataSource]="treeData" [treeControl]="treeControl">
+        <rds-tree-node *rdsTreeNodeDef="let node">
+          <rds-tree-node-text>{{ node.name }}</rds-tree-node-text>
+        </rds-tree-node>
+      
+        <rds-tree-node *rdsTreeNodeDef="let node; when: hasChild">
+          <rds-tree-node-text>{{ node.name }}</rds-tree-node-text>
+          <div rdsTreeNodeContentLeft>
+            <button
+              rds-icon-button
+              rdsTreeNodeToggle
+              [attr.aria-label]="'Toggle ' + node.name"
+            >
+              <rds-icon class="expand-arrow" icon="caret_right"></rds-icon>
+            </button>
+          </div>
+        </rds-tree-node>
+      </rds-tree>-->
+</div>

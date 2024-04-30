@@ -1,0 +1,30 @@
+<rds-header searchPosition="none">
+    <rds-divider rds-header-start-divider></rds-divider>
+    <rds-header-app-name>{{ 'title' | translate }} {{ env }}</rds-header-app-name>
+    <rds-header-navigation-primary>
+      <rds-header-link *ngFor="let lang of langs"
+        [active]="isLangDisabled(lang)"
+        (toggle)="changeLang(lang)"
+      >{{ lang }}</rds-header-link>
+    </rds-header-navigation-primary>
+    <rds-header-navigation-secondary>
+      <rds-header-link *ngFor="let chapter of chapters"
+        [active]="isChapterDisabled(chapter)"
+        (toggle)="changeChapter(chapter)"
+      >{{ chapter }}</rds-header-link>
+    </rds-header-navigation-secondary>
+    <rds-header-actions>
+      <rds-avatar>
+        <span rds-avatar-initials>AB</span>
+      </rds-avatar>
+    </rds-header-actions>
+</rds-header>
+<div class="content">
+  <rds-sidenav>
+      <app-navigation></app-navigation>
+      <app-tree-navigation></app-tree-navigation>
+  </rds-sidenav>
+  <div class="content-wrapper">
+    <router-outlet></router-outlet>
+  </div>
+</div>

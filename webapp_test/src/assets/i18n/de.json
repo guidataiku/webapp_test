@@ -1,0 +1,68 @@
+{
+    "title": "ADAPT Predictive Control Dashboards",
+    "process-confirmation": "Process Confirmation",
+    "saved-analysis": "Saved Analysis",
+    "dialogHeader": {
+        "byCampaign": "Select Campaign",
+        "byId": "Select Batches",
+        "rankedParameters": "Ranked Parameters"
+    },
+    "columnNames": {
+        "batch_id": "Batch number",
+        "predicted_pcv_10h": "Predicted PCV (10 hr model)",
+        "predicted_pcv_60h": "Predicted PCV (60 hr model)",
+        "measured_pcv": "Measured PCV",
+        "campaign_name": "Campaign name",
+        "parameter_name": "Parameter name",
+        "calibration": "Calibration"
+    },
+    "selection-date-range": {
+        "title": "Select Date Range",
+        "label": "Select batches of",
+        "last_week": "Last week",
+        "last_month": "Last month",
+        "last_3_months": "Last 3 months",
+        "date_range": "Date range",
+        "submit": "Apply selected range",
+        "reset": "Reset",
+        "result_found": "Results found"
+    },
+    "pcv-model-insights": {
+        "title": "PCV model insights",
+        "select-batches-label": "Select concrete batches to analyse or batches from a date range",
+        "select-batches-button": "Select Batches",
+        "batch_id": "Batch number",
+        "predicted_pcv_10h": "Predicted PCV (10 hr model)",
+        "predicted_pcv_60h": "Predicted PCV (60 hr model)",
+        "measured_pcv": "Measured PCV",
+        "chart_title": "Predicted vs. Actual PVC",
+        "chart_predicted_pcv_10h": "Predicted PCV (10 hr model)",
+        "chart_predicted_pcv_60h": "Predicted PCV (60 hr model)",
+        "chart_measured_pcv": "Actual measured PVC at the end of N-2",
+        "select-batches-description": "Select here your batches. Remember that, die to functional reasons, you cannot select more that 10 batches as the same time.",
+        "select-batches-hint": "<strong>Outliers</strong><p>Outliers are highlighted in red in the table below and can not included in the scatter plot.<br /><br />Outliers are defined as batches with one or more input variables at least 4 standard deviations from the respective historical, training data means.</p>",
+        "select-batches-submit": "Apply selected batches",
+        "deselect-all-batches": "Reset all filters",
+        "search-batches-placeholder": "Search batches...",
+        "select-parameters-label": "Compare parameters",
+        "select-parameters-button": "Select parameters",
+        "select-all-parameters": "Show all parameters",
+        "parameter_id": "Parameter name",
+        "search-parameters-placeholder": "Search parameters...",
+        "select-parameters-submit": "Apply selected parameters",
+        "select-all-parameters-submit": "Select all parameters"
+    },
+    "pcv-prediction": {
+        "batch_id": "Batch number",
+        "predicted_pcv_10h": "Predicted PCV (10 hr model)",
+        "predicted_pcv_60h": "Predicted PCV (60 hr model)",
+        "measured_pcv": "Measured PCV",
+        "select-batch-submit": "Apply selected batch",
+        "select-batch-label": "Select batch to view recommendation detail.",
+        "select-batch-button": "Select Batch",
+        "prediction-model-selection-label": "Select product prediction model.",
+        "initial-model": "Initial Model",
+        "later-model": "Later Model",
+        "both-models": "Both Models"
+    }
+}

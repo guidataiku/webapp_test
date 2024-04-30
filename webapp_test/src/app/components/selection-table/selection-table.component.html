@@ -1,0 +1,39 @@
+<h2 rds-dialog-header>{{ getTranslationKey('dialogHeader', type) | translate }}<rds-icon icon="close" (click)="close()"/></h2>
+<div rds-dialog-content>
+    <rds-global-search
+        [includeButton]="false"
+        [autoSearch]="true"
+        [(ngModel)]="searchPattern"></rds-global-search>
+    <table rds-table [dataSource]="getFilteredSortedData()" rdsSort #sort>
+        @for (column of columns; track column) {
+            <ng-container [rdsColumnDef]="column">
+                @if (column === 'multiselect') {
+                  <th rds-header-cell *rdsHeaderCellDef></th>
+                  <td rds-cell *rdsCellDef="let element">
+                    <rds-checkbox
+                      (click)="$event.stopPropagation()"
+                      [aria-label]="checkboxLabel(element)"
+                      [checked]="isSelected(element)"
+                      (change)="$event ? selectionChange(element) : null"
+                    ></rds-checkbox>
+                  </td>
+                } @else {
+                  @if (isSortable(column) && column) {
+                    <th rds-header-cell *rdsHeaderCellDef rds-sort-header>{{ getTranslationKey('columnNames', column) | translate }}</th>
+                  } @else {
+                    <th rds-header-cell *rdsHeaderCellDef>{{ getTranslationKey('columnNames', column) | translate }}</th>
+                  }
+                  <td rds-cell *rdsCellDef="let element">{{ element[column] }}</td>
+                }
+                
+            </ng-container>
+        }
+        <tr rds-header-row *rdsHeaderRowDef="columns"></tr>
+        <tr rds-row 
+            *rdsRowDef="let row; columns: columns"
+        ></tr>
+    </table>
+</div>
+<div rds-dialog-actions-container>
+  <button rds-primary-button size="s" [disabled]="selection.length === 0" (click)="submit()" size="m">{{ this.data.submit | translate }}</button>
+</div>

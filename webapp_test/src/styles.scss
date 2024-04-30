@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use "@rds/angular-components/styles/angular-components" as rds;
+
+@include rds.rds-angular-components();
+
+html, body {
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+}
+
+router-outlet + * {
+    height: 100vh;
+}

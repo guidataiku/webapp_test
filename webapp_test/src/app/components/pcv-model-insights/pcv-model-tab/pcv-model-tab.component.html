@@ -1,0 +1,59 @@
+<div class="selection-section">
+    <rds-control-label>{{ 'pcv-model-insights.select-batches-label' | translate }}</rds-control-label>
+    <button rds-primary-button [disabled]="batchesLoading" (click)="openBatchesModal()">
+        <rds-icon icon="factor_parallelism" namespace="filled"></rds-icon>
+        {{ 'pcv-model-insights.select-batches-button' | translate }}
+    </button>
+</div>
+<rds-divider></rds-divider>
+@if (selectedBatchIds.length > 0) {
+    <div class="chip-list">
+        <rds-chip-list>
+            @for (selectedBatchId of selectedBatchIds; track selectedBatchId;) {
+                <rds-chip (closeChip)="toggleBatch(selectedBatchId)" closable>{{ selectedBatchId }}</rds-chip>
+            }
+        </rds-chip-list>
+        <a href="javascript:void(0)" (click)="clearBatches()">{{ 'pcv-model-insights.deselect-all-batches' | translate }}</a>
+    </div>
+    <rds-divider></rds-divider>
+}
+<app-pcv-prediction-chart
+    [selectedBatchIds]="selectedBatchIds"
+    [batches]="batches"
+    (toggleBatchId)="toggleBatch($event)"
+></app-pcv-prediction-chart>
+<rds-divider></rds-divider>
+<div class="selection-section">
+    <rds-control-label>{{ 'pcv-model-insights.select-parameters-label' | translate }}</rds-control-label>
+    <button rds-primary-button [disabled]="parametersLoading" (click)="openParametersModal()">
+        <rds-icon icon="parameters" namespace="filled"></rds-icon>
+        {{ 'pcv-model-insights.select-parameters-button' | translate }}
+    </button>
+    
+</div>
+<rds-divider></rds-divider>
+@if (selectedParameterIds.length > 0) {
+    <div class="chip-list">
+        <rds-chip-list>
+            @for (selectedParameterId of selectedParameterIds; track selectedParameterId;) {
+                <rds-chip (closeChip)="toggleParameter(selectedParameterId)" closable>{{ selectedParameterId }}</rds-chip>
+            }
+        </rds-chip-list>
+        @if (parameters.length !== selectedParameterIds.length) {
+            <a href="javascript:void(0)" (click)="selectAllParameters()">{{ 'pcv-model-insights.select-all-parameters' | translate }}</a>
+        }
+        
+    </div>
+    <rds-divider></rds-divider>
+}
+@if (selectedParameterIds.length > 0) {
+    <div class="card-wrapper">
+        @for (selectedParameterId of selectedParameterIds; track selectedParameterId;) {
+            <app-pcv-parameter-chart
+                [selectedBatches]="getSelectedBatches()"
+                [parameter]="selectedParameterId"
+                [parameterData]="getParameterData(selectedParameterId)"
+            ></app-pcv-parameter-chart>
+        }
+    </div>
+}

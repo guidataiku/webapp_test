@@ -1,0 +1,18 @@
+@defer (when phases) {
+    <rds-tabs>
+        @for (phase of phases; track phase.phaseId; let idx = $index) {
+            <rds-tab [active]="phase.phaseId === activePhaseId" [disabled]="phase.disabled">
+                <ng-template rds-tab-label><span (click)="selectPhaseByPhaseId(phase.phaseId)">{{ phase.title }}</span></ng-template>
+                @if (phase.phaseId === activePhaseId) {
+                    <app-pcv-prediction-tab
+                        [batchesObservable]="getBatchesObservable(phase.phaseId)"
+                        [selection]="getSelectionByPhase(phase.phaseId)"
+                        (updateSelection)="updateSelection(phase.phaseId, $event)"
+                    ></app-pcv-prediction-tab>
+                }
+            </rds-tab>
+        }
+    </rds-tabs>
+} @placeholder {
+    <rds-progress-bar></rds-progress-bar>
+}

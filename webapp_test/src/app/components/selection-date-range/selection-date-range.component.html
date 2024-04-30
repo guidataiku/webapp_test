@@ -1,0 +1,26 @@
+<h2 rds-dialog-header>{{ 'selection-date-range.title' | translate }}<rds-icon icon="close" (click)="close()"/></h2>
+<div rds-dialog-content>
+    <rds-radio-group [formControl]="getTypeFormControl()" class="d-flex flex-column">
+        <rds-control-label>{{ 'selection-date-range.label' | translate }}:</rds-control-label>
+        @for (range of ranges; track range) {
+            <rds-radio-button [value]="range">{{ 'selection-date-range.' + range | translate }}</rds-radio-button>
+        }
+    </rds-radio-group>
+    <rds-form-field>
+      <rds-control-label>Range picker</rds-control-label>
+      <rds-date-range-input [formGroup]="getRangeFormGroup()" [rangePicker]="picker" [max]="dateNow">
+        <input rdsStartDate formControlName="from" placeholder="Start date" />
+        <input rdsEndDate formControlName="to" placeholder="End date" />
+      </rds-date-range-input>
+      <rds-datepicker-toggle
+        rds-control-suffix
+        [forDatepicker]="picker"
+      ></rds-datepicker-toggle>
+      <rds-date-range-picker #picker></rds-date-range-picker>
+    </rds-form-field>
+    <p *ngIf="showResult">{{ 'selection-date-range.result_found' | translate }}: {{ selection.length }}</p>
+</div>
+<div rds-dialog-actions-container>
+  <button rds-secondary-button (click)="reset()" size="m">{{ 'selection-date-range.reset' | translate }}</button>
+  <button rds-primary-button size="m" [disabled]="!showResult || selection.length === 0" (click)="submit()">{{ 'selection-date-range.submit' | translate }}</button>
+</div>

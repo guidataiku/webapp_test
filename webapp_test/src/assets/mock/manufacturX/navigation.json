@@ -1,0 +1,12 @@
+[
+    {
+        "icon": "checkmark_circle",
+        "translationKey": "process-confirmation",
+        "link": "process-confirmation"
+    },
+    {
+        "icon": "folder",
+        "translationKey": "saved-analysis",
+        "link": "saved-analysis"
+    }
+]

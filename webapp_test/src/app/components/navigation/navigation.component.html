@@ -1,0 +1,4 @@
+<a rds-sidenav-menuitem *ngFor="let item of items">
+    <rds-icon namespace="outlined" [icon]="item.icon || null" *ngIf="!!item?.icon"></rds-icon>
+    {{ item.translationKey | translate }}
+</a>

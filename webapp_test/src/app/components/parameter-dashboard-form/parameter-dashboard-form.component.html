@@ -1,0 +1,51 @@
+<div [formGroup]="form"><rds-stepper #stepper orientation="vertical">
+    @for (step of definition; track step; let stepIndex = $index;) {
+        <rds-step label="{{ step.stepname }}" [stepControl]="getStepControl(stepIndex)" [state]="'false'">
+            <form [formGroup]="getStepControl(stepIndex)" class="mt-10">
+                @for (item of step.items; track item) {
+                    @if (item.type === 'SelectBy') {
+                        @if (item.labelBefore) {
+                            <rds-control-label>{{ item.labelBefore }}:</rds-control-label>
+                        }
+                        <div class="button select-by-wrapper">
+                            @for (button of item.selectBy; track button) {
+                                <button rds-secondary-button (click)="openModal(stepIndex, item.id, button.id)">
+                                    @if (button.icon) {
+                                        <rds-icon [icon]="button.icon" namespace="filled"></rds-icon>
+                                    }
+                                    {{ button.label }}
+                                </button>
+                            }
+                        </div>
+                        <rds-chip-list>
+                            @for (chip of this.getFormArrayControls(stepIndex, item.id); track chip; let chipIndex = $index;) {
+                                <rds-chip-selectable
+                                    closable
+                                    (closeChip)="onRemoveFromArray(stepIndex, item.id, chipIndex)"
+                                    >{{ chip.value }}</rds-chip-selectable>
+                            }
+                        </rds-chip-list>
+                    } @else if(item.type === 'Dropdown') {
+                        <rds-form-field>
+                            @if (item.labelBefore) {
+                                <rds-control-label>{{ item.labelBefore }}:</rds-control-label>
+                            }
+                            <rds-select [formControl]="getItemControl(stepIndex, item.id)">
+                                <rds-select-option value="avastin">Avastin</rds-select-option>
+                            </rds-select>
+                        </rds-form-field>
+
+                    }
+                }
+            </form>
+            <div>
+                <button rds-primary-button rdsStepperNext [disabled]="isStepDisabled(step)">Next</button>
+            </div>
+        </rds-step>
+    }
+    <rds-step label="View Analysis">
+
+    </rds-step>
+</rds-stepper>
+<pre>{{ form.value | json }}</pre>
+</div>

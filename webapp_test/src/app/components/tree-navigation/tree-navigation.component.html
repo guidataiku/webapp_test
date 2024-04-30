@@ -1,0 +1,18 @@
+<rds-sidenav-group>
+    <rds-sidenav-group-title>Documentation version 4.0</rds-sidenav-group-title>
+    <button [rdsSidenavMenuTriggerFor]="menu2">
+        <rds-icon namespace="outlined" icon="folder"></rds-icon>
+        Avastin
+        <rds-badge color="info" label="3" size="s"></rds-badge>
+      </button>
+      <rds-sidenav-menu #menu2="rdsSidenavMenu" #sidenav>
+        @if (currentChapter === 'manufacturX') {
+            <a rds-sidenav-menuitem (click)="openLink('avastin', 'pcv-model-insights')">PCV model insights</a>
+            <a rds-sidenav-menuitem>Titer model insight</a>
+            <a rds-sidenav-menuitem (click)="openLink('avastin', 'parameter-dashboard')">Parameter Dashboard</a>
+        }
+        @if (currentChapter === 'operatorX') {
+            <a rds-sidenav-menuitem (click)="openLink('avastin', 'pcv-prediction')">PCV Prediction</a>
+        }
+      </rds-sidenav-menu>
+</rds-sidenav-group>

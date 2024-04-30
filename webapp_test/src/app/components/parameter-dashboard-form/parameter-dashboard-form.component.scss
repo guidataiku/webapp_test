@@ -1,0 +1,10 @@
+:host {
+    .select-by-wrapper {
+        button + button {
+            margin-left: 10px;
+        }
+    } 
+    .select-by-wrapper + rds-chip-list {
+        margin: 10px 0 15px;
+    }
+}

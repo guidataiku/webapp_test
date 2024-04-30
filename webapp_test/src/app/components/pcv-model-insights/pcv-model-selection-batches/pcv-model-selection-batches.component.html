@@ -1,0 +1,47 @@
+<h2 rds-dialog-header>{{ 'pcv-model-insights.select-batches-button' | translate }}<rds-icon icon="close" (click)="close()"/></h2>
+<div rds-dialog-content>
+  <p>{{ 'pcv-model-insights.select-batches-description' | translate }}</p>
+  <rds-alert closable><div [innerHTML]="'pcv-model-insights.select-batches-hint' | translate"></div></rds-alert>
+  <rds-global-search
+      [includeButton]="false"
+      [autoSearch]="true"
+      [placeholder]="'pcv-model-insights.search-batches-placeholder' | translate"
+      [(ngModel)]="dataSource.filter"></rds-global-search>
+  <table rds-table [dataSource]="dataSource" rdsSort #sort>
+    <ng-container rdsColumnDef="multiselect">
+      <th rds-header-cell *rdsHeaderCellDef></th>
+      <td rds-cell *rdsCellDef="let element">
+        @if(element.outlier_flag === false) {
+          <rds-checkbox
+            (click)="$event.stopPropagation()"
+            [aria-label]="checkboxLabel(element)"
+            [checked]="isSelected(element)"
+            (change)="$event ? toggleSelection(element) : null"
+            [disabled]="isDisabled(element)"
+          ></rds-checkbox>
+        }
+      </td>
+    </ng-container>
+    <ng-container rdsColumnDef="batch_id">
+      <th rds-header-cell *rdsHeaderCellDef rds-sort-header>{{ 'pcv-model-insights.batch_id' | translate }}</th>
+      <td rds-cell *rdsCellDef="let element">{{ element.batch_id }}</td>
+    </ng-container>
+    <ng-container rdsColumnDef="predicted_pcv_10h">
+      <th rds-header-cell *rdsHeaderCellDef rds-sort-header>{{ 'pcv-model-insights.predicted_pcv_10h' | translate }}</th>
+      <td rds-cell *rdsCellDef="let element">{{ element.predicted_pcv_10h }}</td>
+    </ng-container>
+    <ng-container rdsColumnDef="predicted_pcv_60h">
+      <th rds-header-cell *rdsHeaderCellDef rds-sort-header>{{ 'pcv-model-insights.predicted_pcv_60h' | translate }}</th>
+      <td rds-cell *rdsCellDef="let element">{{ element.predicted_pcv_60h }}</td>
+    </ng-container>
+    <ng-container rdsColumnDef="measured_pcv">
+      <th rds-header-cell *rdsHeaderCellDef rds-sort-header>{{ 'pcv-model-insights.measured_pcv' | translate }}</th>
+      <td rds-cell *rdsCellDef="let element">{{ element.measured_pcv }}</td>
+    </ng-container>
+    <tr rds-header-row *rdsHeaderRowDef="displayedColumns"></tr>
+    <tr rds-row *rdsRowDef="let row; columns: displayedColumns" [ngClass]="{'outlier': row.outlier_flag === true }" [disabled]="isDisabled(row)"></tr>
+  </table>
+</div>
+<div rds-dialog-actions-container>
+  <button rds-primary-button size="m" (click)="submit()">{{ 'pcv-model-insights.select-batches-submit' | translate }}</button>
+</div>

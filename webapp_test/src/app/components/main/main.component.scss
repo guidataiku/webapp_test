@@ -1,0 +1,41 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    ::ng-deep rds-header {
+        order: 0;
+        flex: 0 1 auto;
+        align-self: auto;
+    }
+    > .content {
+        order: 0;
+        flex: 1 1 auto;
+        align-self: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
+        ::ng-deep rds-sidenav {
+            order: 0;
+            flex: 0 1 auto;
+            align-self: auto;
+            height: 100%;
+        }
+
+        > .content-wrapper {
+            order: 0;
+            flex: 1 1 auto;
+            align-self: auto;
+            padding: 20px 24px;
+            background-color: #F5F5F2;
+        }
+    }
+    .rds-header .rds-header-navigation {
+        margin-right: 40px;
+    }
+}

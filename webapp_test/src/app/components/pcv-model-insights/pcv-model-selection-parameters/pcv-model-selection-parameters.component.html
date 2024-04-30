@@ -1,0 +1,39 @@
+<h2 rds-dialog-header>{{ 'pcv-model-insights.select-parameters-button' | translate }}<rds-icon icon="close" (click)="close()"/></h2>
+<div rds-dialog-content>
+  <rds-global-search
+      [includeButton]="false"
+      [autoSearch]="true"
+      [(ngModel)]="dataSource.filter"
+      [placeholder]="'pcv-model-insights.search-parameters-placeholder' | translate"></rds-global-search>
+  <table rds-table [dataSource]="dataSource" rdsSort #sort>
+    <ng-container rdsColumnDef="multiselect">
+      <th rds-header-cell *rdsHeaderCellDef>
+        <rds-checkbox
+          (changed)="$event.checked ? selectAll() : deselectAll()"
+          [checked]="isAllChecked()"
+          [indeterminate]="isIntermediate()"
+          [aria-label]="allCheckboxLabel()"
+      ></rds-checkbox>
+      </th>
+      <td rds-cell *rdsCellDef="let element">
+        <rds-checkbox
+          (click)="$event.stopPropagation()"
+          [aria-label]="checkboxLabel(element)"
+          [checked]="isSelected(element)"
+          (change)="$event ? toggleSelection(element) : null"
+          [disabled]="isDisabled(element)"
+        ></rds-checkbox>
+      </td>
+    </ng-container>
+    <ng-container rdsColumnDef="parameter_id">
+      <th rds-header-cell *rdsHeaderCellDef rds-sort-header>{{ 'pcv-model-insights.parameter_id' | translate }}</th>
+      <td rds-cell *rdsCellDef="let element">{{ element.parameter_id }}<br /><span>{{ element.description }}</span></td>
+    </ng-container>
+    <tr rds-header-row *rdsHeaderRowDef="displayedColumns"></tr>
+    <tr rds-row *rdsRowDef="let row; columns: displayedColumns" [disabled]="isDisabled(row)"></tr>
+  </table>
+</div>
+<div rds-dialog-actions-container>
+  <button rds-secondary-button size="m" (click)="submitAll()">{{ 'pcv-model-insights.select-all-parameters-submit' | translate }}</button>
+  <button rds-primary-button size="m" (click)="submit()">{{ 'pcv-model-insights.select-parameters-submit' | translate }}</button>
+</div>
